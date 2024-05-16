@@ -23,7 +23,7 @@ export const Navbar: React.FC = () => {
             />
           </svg>
           <span className="self-center text-lg font-semibold whitespace-nowrap text-white">
-            Fresh Meat House
+            Burnage Butcher
           </span>
         </a>
         {/* <button
