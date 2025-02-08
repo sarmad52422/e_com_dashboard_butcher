@@ -88,13 +88,13 @@ export const SelectCategory: React.FC<SelectCategoryProps> = ({
           >
             Select Category
           </option>
-          {categories.map((category) => (
+          {categories?.map((category) => (
             <option
               key={category.id}
               value={category.id}
               className="text-body dark:text-bodydark"
             >
-              {category.name.toUpperCase()}
+              {category.categoryName.toUpperCase()}
             </option>
           ))}
         </select>

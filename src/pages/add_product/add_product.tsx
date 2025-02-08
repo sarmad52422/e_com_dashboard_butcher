@@ -21,7 +21,7 @@ export const AddProduct = () => {
   };
   const removeImage = (
     index: number,
-    event: React.MouseEvent<HTMLButtonElement>
+    event: React.MouseEvent<HTMLButtonElement>,
   ) => {
     event.preventDefault();
     const updatedImages = [...imageFiles];
@@ -48,17 +48,17 @@ export const AddProduct = () => {
       console.log(values);
       try {
         const uploadedImages = await Promise.all(
-          imageFiles.map(async (file: File) => {
+          imageFiles?.map(async (file: File) => {
             const formData = new FormData();
             formData.append("file", file);
             formData.append("upload_preset", "d7rtvmdb");
             const response = await axios.post(
               `https://api.cloudinary.com/v1_1/dk4wazera/image/upload`,
-              formData
+              formData,
             );
             console.log(response);
             return response.data.secure_url;
-          })
+          }),
         );
         console.log("Uploaded images:", uploadedImages);
         values.images = uploadedImages;
@@ -251,7 +251,7 @@ export const AddProduct = () => {
             </div> */}
           </div>
           <div className="flex flex-wrap items-center justify-start h-48 mb-4 rounded bg-gray-800">
-            {imageFiles.map((file: any, index: any) => (
+            {imageFiles?.map((file: any, index: any) => (
               <div
                 key={index}
                 className="relative flex items-center max-w-56 min-w-40 justify-center rounded  h-36 dark:bg-gray-800 overflow-hidden mr-2 mb-2"

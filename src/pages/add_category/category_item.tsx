@@ -12,7 +12,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
   refreshCategories,
 }) => {
   const [editing, setEditing] = useState(false);
-  const [editedName, setEditedName] = useState(category.name);
+  const [editedName, setEditedName] = useState(category.categoryName);
 
   const handleDelete = async () => {
     try {
@@ -38,7 +38,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
   };
 
   useEffect(() => {
-    setEditedName(category.name);
+    setEditedName(category.categoryName);
   }, [category]);
 
   return (
@@ -51,7 +51,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
           onChange={(e) => setEditedName(e.target.value)}
         />
       ) : (
-        <span className="text-white">{category.name}</span>
+        <span className="text-white">{category.categoryName}</span>
       )}
       <div>
         {editing ? (

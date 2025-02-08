@@ -1,6 +1,6 @@
 export interface CategoryInterface {
-    id?: string;
-    name: string;
-    createdAt: Date;
-    updatedAt: Date;
-  }
+  id?: string;
+  categoryName: string;
+  createdAt: Date;
+  updatedAt: Date;
+}

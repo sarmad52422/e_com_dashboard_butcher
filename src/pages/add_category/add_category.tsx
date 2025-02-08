@@ -25,7 +25,7 @@ export const AddCategory = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: "",
+      categoryName: "",
       createdAt: new Date(),
       updatedAt: new Date(),
     },
@@ -35,7 +35,11 @@ export const AddCategory = () => {
       setSubmitting(true);
       console.log(values);
       try {
-        const lowercaseValues = { ...values, name: values.name.toLowerCase() };
+        const lowercaseValues = {
+          ...values,
+          categoryName: values.categoryName.toLowerCase(),
+        };
+        console.log(JSON.stringify(lowercaseValues) + "<<<<<<<<<<<");
 
         const result = await AdminServices.createCategory(lowercaseValues);
         console.log(result);
@@ -61,14 +65,17 @@ export const AddCategory = () => {
                   </label>
                   <input
                     type="text"
-                    value={formik.values.name}
-                    onChange={formik.handleChange("name")}
+                    value={formik.values.categoryName}
+                    onChange={formik.handleChange("categoryName")}
                     placeholder="Enter Category Name"
                     className="w-full rounded-lg border-[1.5px] border-stroke bg-slate-500 px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input"
                   />
-                  {formik.touched.name && formik.errors.name && (
-                    <div className="text-red-500">{formik.errors.name}</div>
-                  )}
+                  {formik.touched.categoryName &&
+                    formik.errors.categoryName && (
+                      <div className="text-red-500">
+                        {formik.errors.categoryName}
+                      </div>
+                    )}
                 </div>
               </div>
             </div>
@@ -83,7 +90,7 @@ export const AddCategory = () => {
             Save Category
           </button>
         </div>
-        {categories.map((category) => (
+        {categories?.map((category) => (
           <CategoryItem
             key={category.id}
             category={category}
