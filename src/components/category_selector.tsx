@@ -4,8 +4,8 @@ import { AdminServices } from "../services/admin";
 import React, { useEffect, useState } from "react";
 
 interface SelectCategoryProps {
-  value: string | undefined;
-  onChange: (value: string) => void;
+  value: { categoryName: string }; // Accept value as an object with categoryName
+  onChange: (value: { categoryName: string }) => void; // Pass an object with categoryName
 }
 
 export const SelectCategory: React.FC<SelectCategoryProps> = ({
@@ -71,9 +71,9 @@ export const SelectCategory: React.FC<SelectCategoryProps> = ({
         </span>
 
         <select
-          value={externalValue || ""}
+          value={externalValue?.categoryName || ""} // Use categoryName for the value
           onChange={(e) => {
-            onChange(e.target.value); // Pass category ID to parent component
+            onChange({ categoryName: e.target.value }); // Pass an object with categoryName
             changeTextColor();
           }}
           className={`relative rounded-lg border-[1.5px] w-full bg-slate-500 appearance-none border-stroke bg-transparent px-12 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input ${
@@ -91,7 +91,7 @@ export const SelectCategory: React.FC<SelectCategoryProps> = ({
           {categories?.map((category) => (
             <option
               key={category.id}
-              value={category.id}
+              value={category.categoryName} // Use categoryName for the value
               className="text-body dark:text-bodydark"
             >
               {category.categoryName.toUpperCase()}

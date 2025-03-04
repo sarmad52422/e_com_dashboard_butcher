@@ -1,14 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 
-export interface Tag {
-  value: string;
-  text: string;
-}
-
 interface TagInputProps {
   id: string;
-  value: Tag[]; // Accept value prop
-  onChange: (tags: Tag[]) => void; // Accept onChange prop
+  value: string[]; // Accept value as an array of strings
+  onChange: (tags: string[]) => void; // Accept onChange as a function that updates an array of strings
 }
 
 const TagInput: React.FC<TagInputProps> = ({ id, value, onChange }) => {
@@ -17,9 +12,9 @@ const TagInput: React.FC<TagInputProps> = ({ id, value, onChange }) => {
 
   const addTag = () => {
     if (inputValue.trim() !== "") {
-      const newTag: Tag = { value: inputValue.trim(), text: inputValue.trim() };
-      onChange([...value, newTag]); // Update tags state using onChange prop
-      setInputValue("");
+      const newTag = inputValue.trim();
+      onChange([...value, newTag]); // Add the new tag (string) to the array
+      setInputValue(""); // Clear the input field after adding the tag
     }
   };
 
@@ -55,7 +50,7 @@ const TagInput: React.FC<TagInputProps> = ({ id, value, onChange }) => {
             key={index}
             className="flex items-center bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg px-3 py-1 mr-2 mb-1 mt-1"
           >
-            <span>{tag.text}</span>
+            <span>{tag}</span> {/* Directly display the tag (string) */}
             <button
               onClick={() => removeTag(index)}
               className="ml-2 focus:outline-none"
