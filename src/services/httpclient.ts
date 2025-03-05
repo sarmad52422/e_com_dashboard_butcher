@@ -57,13 +57,14 @@ export class HttpClient {
       return { error: e };
     }
   }
-  static async put(url: string, data: any) {
+  static async patch(url: string, data: any) {
     try {
-      const response = await axios.put(this.baseUrl + url, data, {
+      const response = await axios.patch(this.baseUrl + url, data, {
         headers: {
           "Content-Type": "application/json",
         },
       });
+      console.log(this.baseUrl, url);
 
       if (response?.status === 200) {
         return { data: response.data };

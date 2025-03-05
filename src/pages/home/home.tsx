@@ -3,7 +3,13 @@ import { useState } from "react";
 import { AddProduct } from "../add_product/add_product";
 import { AddCategory } from "../add_category/add_category";
 import ProductPage from "../view_all_products/all_products";
-type MenuItem = "Dashboard" | "Add Products" | "Add Category" | "View Products"; // Add other menu items as needed
+import AdminLogin from "../adminLogin/AdminLogin";
+type MenuItem =
+  | "Dashboard"
+  | "Add Products"
+  | "Add Category"
+  | "View Products"
+  | "Admin Login"; // Add other menu items as needed
 export const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] =
@@ -24,6 +30,8 @@ export const Home = () => {
         return <AddCategory />;
       case "View Products":
         return <ProductPage />;
+      case "Admin Login":
+        return <AdminLogin />;
       default:
         return null;
     }

@@ -19,9 +19,15 @@ export const AdminServices = {
     return await HttpClient.delete(AdminEndPoints.DELETE_CATEGORY(id));
   },
   async updateCategory(data: CategoryInterface) {
-    return await HttpClient.put(AdminEndPoints.UPDATE_CATEGORY, data);
+    return await HttpClient.patch(AdminEndPoints.UPDATE_CATEGORY, data);
   },
   async getAllProducts() {
     return await HttpClient.get(AdminEndPoints.GET_ALL_PRODUCTS);
+  },
+  async updateProducts(id: string, data: ProductInterface) {
+    return await HttpClient.patch(AdminEndPoints.UPDATE_PRODUCT(id), data);
+  },
+  async deleteProducts(id: string) {
+    return await HttpClient.delete(AdminEndPoints.DELETE_PRODUCT(id));
   },
 };

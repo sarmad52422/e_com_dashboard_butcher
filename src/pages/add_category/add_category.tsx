@@ -142,13 +142,13 @@ export const AddCategory = () => {
           </h2>
           {loading ? (
             <LoadingSpinner />
-          ) : categories.length === 0 ? (
+          ) : categories?.length === 0 ? (
             <p className="text-slate-400 text-center p-4 bg-slate-800 rounded-md shadow">
               No categories available
             </p>
           ) : (
             <div className="grid grid-cols-1 gap-4">
-              {categories.map((category) => (
+              {categories?.map((category) => (
                 <CategoryItem
                   key={
                     category.id ||
